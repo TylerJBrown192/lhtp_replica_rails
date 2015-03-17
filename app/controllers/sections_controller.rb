@@ -39,7 +39,7 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @section.destroy
     flash[:notice] = "Section deleted."
-    redirect_to lists_path
+    redirect_to sections_path
   end
 
 private

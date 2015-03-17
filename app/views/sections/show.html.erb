@@ -9,7 +9,7 @@
     <% @section.weeks.each do |week| %>
 
     <li>
-      <%= link_to section.week.name, week_path(week) %>
+      <%= link_to week.name, section_week_path(@section, week) %>
       <%= link_to "Edit", edit_section_week_path(@section, week) %> |
       <%= link_to "Delete", section_week_path(@section, week),
                             :data => {:confirm =>"Woooord?",
@@ -24,7 +24,7 @@
   <% end %>
 
 <p>
-  <a href="/sections/new">Create Week</a>
+  <%= link_to "Add Week", new_section_week_path(@section) %>
 </p>
 
 <p>
