@@ -32,4 +32,10 @@ class SectionsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @section = Section.find(params[:id])
+    @section.destroy
+    redirect_to lists_path
+  end
 end
