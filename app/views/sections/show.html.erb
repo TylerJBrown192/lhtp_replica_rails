@@ -2,12 +2,37 @@
 
 <h1><%= @section.name %></h1>
 
+<% if @section.weeks.any? %>
+<h4>Here are the weeks for this section:</h4>
+
+  <ul>
+    <% @section.weeks.each do |week| %>
+
+    <li>
+      <%= link_to section.week.name, week_path(week) %>
+      <%= link_to "Edit", edit_section_week_path(@section, week) %> |
+      <%= link_to "Delete", section_week_path(@section, week),
+                            :data => {:confirm =>"Woooord?",
+                                      :method => "delete"} %>
+    </li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>
+      There are no weeks!
+    </p>
+  <% end %>
+
 <p>
-  <%= link_to "Edit", edit_section_path(@section) %>
+  <a href="/sections/new">Create Week</a>
 </p>
 
 <p>
-  <%= link_to "Delete", section_path(@section),
+  <%= link_to "Edit Section", edit_section_path(@section) %>
+</p>
+
+<p>
+  <%= link_to "Delete Section", section_path(@section),
                           :data => {:confrim => "For Reals?",
                                     :method => "delete"} %>
 </p>
