@@ -12,8 +12,9 @@ class SectionsController < ApplicationController
   end
 
   def create
-    @section = Section.new(params[:section])
+    @section = Section.new(section_params)
     if @section.save
+      flash[:notice] = "Section successfully added!"
       redirect_to sections_path
     else
       render :new
@@ -26,7 +27,8 @@ class SectionsController < ApplicationController
 
   def update
     @section = Section.find(params[:id])
-    if @section.update(params[:section])
+    if @section.update(section_params)
+      flash[:notice] = "Section successfully updated!"
       redirect_to sections_path
     else
       render :edit
@@ -36,6 +38,12 @@ class SectionsController < ApplicationController
   def destroy
     @section = Section.find(params[:id])
     @section.destroy
+    flash[:notice] = "Section deleted."
     redirect_to lists_path
+  end
+
+private
+  def section_params
+    params.require(:section).permit(:name)
   end
 end
