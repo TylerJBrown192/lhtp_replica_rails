@@ -1,7 +1,7 @@
 class WeeksController < ApplicationController
   def show
     @section = Section.find(params[:section_id])
-    @week = @section.week.find(params[:id])
+    @week = @section.weeks.find(params[:id])
   end
 
   def new
